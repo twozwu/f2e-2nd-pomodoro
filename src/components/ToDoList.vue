@@ -36,8 +36,6 @@ const displayItems = computed(() => {
     return todoFilter[filterStatus.value]()
 })
 
-// const getIndex = (id) => toDoList.value.findIndex((item, index) => item.id === id)
-
 const mainInput = ref(null)
 const templateContent = ref(null)
 const todo = {
@@ -48,7 +46,6 @@ const todo = {
             content: mainInput.value,
             done: false
         }
-        // toDoList.value.push(item)
         store.commit('add', item)
         proxy.$emitter.emit('chartUpdate')
         mainInput.value = null
@@ -64,12 +61,10 @@ const todo = {
         proxy.$emitter.emit('chartUpdate')
     },
     edit: (id) => {
-        // const item = toDoList.value.find((item) => item.id === id)
         const item = store.getters.findItem(id)
         templateContent.value = { ...item }
     },
     editDone: (id) => {
-        // toDoList[getIndex(id)].content = templateContent.value.content
         const data = {
             id: id,
             content: templateContent.value.content,
@@ -82,7 +77,6 @@ const todo = {
         templateContent.value = null
     },
     delete: (id) => {
-        // toDoList.value.splice(getIndex(id), 1)
         store.commit('delete', id)
         proxy.$emitter.emit('chartUpdate')
     }
