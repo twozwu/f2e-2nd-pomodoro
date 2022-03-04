@@ -25,7 +25,7 @@
 
 <script setup>
 import Vue3ChartJs from '@j-t-mcc/vue3-chartjs'
-import { ref, getCurrentInstance, computed, onMounted } from 'vue'
+import { ref, getCurrentInstance, onBeforeUnmount } from 'vue'
 import { useStore } from 'vuex'
 
 const { proxy } = getCurrentInstance()
@@ -35,6 +35,8 @@ proxy.$emitter.on('chartUpdate', () => {
     chart.data.datasets[0].data = getToDoData(thisWeek) //畫面更新前要先改狀態
     chartRef.value.update()
 })
+
+onBeforeUnmount = () => proxy.$emitter.off('chartUpdate')
 
 let thisWeek = 1
 let weekStart = ref(null)

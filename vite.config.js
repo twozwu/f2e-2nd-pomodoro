@@ -10,7 +10,8 @@ export default defineConfig({
       "@": resolve(__dirname, "src"),
       "/images": "src/assets/images",
       "/js": "src/assets/js",
-      "/music": "src/assets/music",
+      // "/music": "src/assets/music",
+      "/music": resolve(__dirname, "src/assets/music"),
     },
   },
 });

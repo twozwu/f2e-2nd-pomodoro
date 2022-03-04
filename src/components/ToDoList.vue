@@ -89,7 +89,7 @@ const todo = {
         :class="{ 'translate-x-full': listStatus }"
     >
         <div class="flex justify-between items-end">
-            <span class="text-4xl">代辦清單</span>
+            <span class="text-4xl font-bold">代辦清單</span>
             <div class="flex">
                 <button
                     class="border-b-2 border-transparent hover:border-b-2 hover:border-secondary mr-3"

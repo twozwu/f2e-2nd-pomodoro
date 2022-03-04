@@ -2,8 +2,17 @@
 import { ref, reactive, computed, watch } from "vue"
 import ToDoList from "./components/ToDoList.vue"
 import Analyse from "./components/Analyse.vue"
+import Clock from "./components/Clock.vue"
 import dayjs from 'dayjs'
 import { useStore } from 'vuex'
+import alarm from '/music/alarm.mp3'
+import don from '/music/don.mp3'
+import yay from '/music/yay.mp3'
+
+//webpack沒有對mp3解析路徑，需要自己來...
+const alarmUrl = ref(alarm)
+const donUrl = ref(don)
+const yayUrl = ref(yay)
 
 const store = useStore()
 
@@ -95,13 +104,12 @@ function ringbellToggle(element) {
   playSound(element)
   ringbellStatus.value = !ringbellStatus.value
 }
-
 </script>
 
 <template>
-  <audio id="audio-don" src="/music/don.mp3" :muted="!ringbellStatus"></audio>
-  <audio id="audio-alarm" src="/music/alarm.mp3" :muted="!ringbellStatus"></audio>
-  <audio id="audio-yay" src="/music/yay.mp3" :muted="!ringbellStatus"></audio>
+  <audio id="audio-don" :src="donUrl" :muted="!ringbellStatus"></audio>
+  <audio id="audio-alarm" :src="alarmUrl" :muted="!ringbellStatus"></audio>
+  <audio id="audio-yay" :src="yayUrl" :muted="!ringbellStatus"></audio>
   <div class="flex selection:bg-green-100">
     <div class="flex flex-col justify-center h-screen w-[80px] bg-gray-200 z-20">
       <button
@@ -123,8 +131,7 @@ function ringbellToggle(element) {
       <ToDoList :listStatus="sidebarStatus.listStatus" />
       <Analyse :analyseStatus="sidebarStatus.analyseStatus" />
       <div class="text-right opacity-60 p-7">
-        <span class="mr-5">{{ dayjs().format('YYYY-MM-DD') }}</span>
-        <span class>{{ dayjs().format('dddd HH:mm') }}</span>
+        <Clock />
       </div>
       <div class="flex duration-500" :class="{ 'translate-x-1/2': sidebarStatus.mainStatus }">
         <div class="flex flex-col justify-center time w-1/2">
