@@ -19,7 +19,7 @@ const { todayJobs, thisWeekJobs } = mapGetters()
         :class="{ 'translate-x-full': analyseStatus }"
     >
         <div class="justify-between items-end">
-            <span class="text-4xl">專注度分析</span>
+            <span class="text-4xl font-bold">專注度分析</span>
         </div>
         <div class="lg:flex gap-12 items-center my-10">
             <div class="lg:w-1/2">
